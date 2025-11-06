@@ -16,12 +16,9 @@ import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
-import coil3.request.CachePolicy
-import coil3.request.ImageRequest
-import coil3.request.allowHardware
-import coil3.request.bitmapConfig
-import coil3.request.crossfade
-import coil3.size.Scale
+import coil.request.CachePolicy
+import coil.request.ImageRequest
+import coil.size.Scale
 import java.io.IOException
 
 object Utils {

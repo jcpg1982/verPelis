@@ -8,11 +8,15 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Cache
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import pe.com.master.machines.design.utils.Utils.isInternetReachable
 import pe.com.master.machines.network.api.ApiService
+import pe.com.master.machines.network.utils.AuthInterceptor
 import pe.com.master.machines.network.utils.Utils.BASE_URL
+import pe.com.master.machines.network.utils.Utils.TMDB_API_KEY
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -48,6 +52,7 @@ object NetworkModule {
         OkHttpClient
             .Builder()
             .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(AuthInterceptor(TMDB_API_KEY))
             .addInterceptor { chain ->
                 var request = chain.request()
                 request = if (isInternetReachable) {

@@ -10,9 +10,7 @@ plugins {
 
 android {
     namespace = "pe.com.master.machines.database"
-    compileSdk {
-        version = release(libs.versions.compileSdk.get().toInt())
-    }
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()

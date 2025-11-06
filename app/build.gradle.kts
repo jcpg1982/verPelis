@@ -8,9 +8,7 @@ plugins {
 
 android {
     namespace = "pe.com.master.machines.verpelis"
-    compileSdk {
-        version = release(libs.versions.compileSdk.get().toInt())
-    }
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "pe.com.master.machines.verpelis"

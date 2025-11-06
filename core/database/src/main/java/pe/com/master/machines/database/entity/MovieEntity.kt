@@ -6,7 +6,7 @@ import org.mongodb.kbson.ObjectId
 
 open class MovieEntity : RealmObject {
     @PrimaryKey
-    var id: ObjectId = ObjectId()
+    var id: Int = 0
     var name: String = ""
     var status: String = ""
     var species: String = ""

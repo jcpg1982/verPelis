@@ -10,7 +10,7 @@ class MovieNetworkRepositoryImpl @Inject constructor(private val apiService: Api
     MovieNetworkRepository {
 
     override fun getLoadAllCharacters(page: Int) = flow {
-        val response = apiService.getLoadAllCharacters(page)
+        val response = apiService.getLoadAllCharacters("es-ES", page)
         emit(Resource.Success(response))
     }
 

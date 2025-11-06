@@ -38,8 +38,8 @@ class HomeViewmodel @Inject constructor(
     val getAllCharactersState = _getAllCharactersState.asStateFlow()
     private val _searchCharacterState = MutableStateFlow("")
     val searchCharacterState = _searchCharacterState.asStateFlow()
-    private val _listCharacters = MutableStateFlow(listOf<Movie>())
-    val listCharacters = _listCharacters.asStateFlow()
+    private val _listMovies = MutableStateFlow(listOf<Movie>())
+    val listMovies = _listMovies.asStateFlow()
     var pageCurrent = 1
     var isConnected = false
 
@@ -54,7 +54,7 @@ class HomeViewmodel @Inject constructor(
     }
 
     fun updateListCharacter() {
-        _listCharacters.update { listOf() }
+        _listMovies.update { listOf() }
     }
 
     fun getAllCharacters() {
@@ -134,7 +134,7 @@ class HomeViewmodel @Inject constructor(
     }
 
     private fun updateListCharacters(list: List<Movie>) {
-        _listCharacters.update { currentList ->
+        _listMovies.update { currentList ->
             val existingIds = currentList.map { it.id }.toSet()
             val newCharacters = list.filter { it.id !in existingIds }
             currentList + newCharacters

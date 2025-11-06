@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
@@ -27,6 +28,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.delay
 import pe.com.master.machines.design.components.dialogs.DialogAlert
 import pe.com.master.machines.design.components.dialogs.LoadingDialog
+import pe.com.master.machines.design.components.row.HomeMovieRow
 import pe.com.master.machines.design.components.text.CustomText
 import pe.com.master.machines.design.components.text.SearchText
 import pe.com.master.machines.design.theme.ColorBlack
@@ -49,7 +51,7 @@ fun HomeScreen(
     val context = LocalContext.current
     val getAllCharactersState by homeViewmodel.getAllCharactersState.collectAsStateWithLifecycle()
     val searchCharacterState by homeViewmodel.searchCharacterState.collectAsStateWithLifecycle()
-    val listCharacters by homeViewmodel.listCharacters.collectAsStateWithLifecycle()
+    val listMovies by homeViewmodel.listMovies.collectAsStateWithLifecycle()
     var idCharacterSelected by remember { mutableStateOf<Int?>(null) }
 
     var isLoading by remember { mutableStateOf(false) }
@@ -95,7 +97,7 @@ fun HomeScreen(
     val shouldLoadMore by remember {
         derivedStateOf {
             val lastVisibleItem = listState.layoutInfo.visibleItemsInfo.lastOrNull()
-            lastVisibleItem != null && lastVisibleItem.index == listCharacters.size - 1
+            lastVisibleItem != null && lastVisibleItem.index == listMovies.size - 1
         }
     }
 
@@ -141,8 +143,8 @@ fun HomeScreen(
                 modifier = Modifier.weight(1f),
                 state = listState
             ) {
-                /*items(listCharacters) { item ->
-                    HomeCharacterRow(
+                items(listMovies) { item ->
+                    HomeMovieRow(
                         isExpanded = idCharacterSelected == item.id,
                         item = item,
                         onExpandClick = {
@@ -156,7 +158,7 @@ fun HomeScreen(
                             onNavigateToViewEpisodes(it)
                         }
                     )
-                }*/
+                }
             }
         }
     }

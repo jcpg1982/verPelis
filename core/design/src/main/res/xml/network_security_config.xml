@@ -2,6 +2,6 @@
 <network-security-config>
     <base-config cleartextTrafficPermitted="false" />
     <domain-config>
-        <domain includeSubdomains="true">https://jsonblob.com/</domain>
+        <domain includeSubdomains="true">https://api.themoviedb.org</domain>
     </domain-config>
 </network-security-config>

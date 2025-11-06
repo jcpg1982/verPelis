@@ -6,9 +6,7 @@ plugins {
 
 android {
     namespace = "pe.com.master.machines.design"
-    compileSdk {
-        version = release(libs.versions.compileSdk.get().toInt())
-    }
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
@@ -60,7 +58,7 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     //coil
     implementation(libs.coil.compose)
-    implementation(libs.coil.network.okhttp)
+    //implementation(libs.coil.network.okhttp)
     implementation(libs.coil.svg)
     //icons
     implementation(libs.androidx.material.icons.core)

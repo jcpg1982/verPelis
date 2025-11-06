@@ -12,5 +12,17 @@ plugins {
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.google.devtools.ksp) apply false
     alias(libs.plugins.hilt.gradle) apply false
+    alias(libs.plugins.realm.kotlin) apply false
 }
+
+subprojects {
+    configurations.all {
+        resolutionStrategy.eachDependency {
+            if (requested.group == "org.jetbrains.kotlin") {
+                useVersion("2.0.21")
+            }
+        }
+    }
+}
+
 

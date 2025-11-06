@@ -7,11 +7,11 @@ import pe.com.master.machines.network.model.model.MovieNetwork
 @Serializable
 data class ResponseAllMoviesNetwork(
     @SerializedName("page")
-    val page: Int,
+    val page: Int? = null,
     @SerializedName("results")
-    val results: List<MovieNetwork>,
+    val results: List<MovieNetwork>? = null,
     @SerializedName("total_pages")
-    val totalPages: Int,
+    val totalPages: Int? = null,
     @SerializedName("total_results")
-    val totalResults: Int
+    val totalResults: Int? = null
 )

@@ -5,13 +5,12 @@ plugins {
     alias(libs.plugins.hilt.gradle)
     alias(libs.plugins.google.devtools.ksp)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.realm.kotlin)
 }
 
 android {
     namespace = "pe.com.master.machines.data"
-    compileSdk {
-        version = release(libs.versions.compileSdk.get().toInt())
-    }
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
@@ -59,4 +58,6 @@ dependencies {
     testImplementation(libs.junit4)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.espresso.core)
+    //realm
+    implementation(libs.android.realm.base)
 }

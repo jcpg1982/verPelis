@@ -32,10 +32,10 @@ import pe.com.master.machines.design.theme.ContentInsetEight
 import pe.com.master.machines.design.theme.ContentInsetOneHundredFifty
 import pe.com.master.machines.design.theme.DynamicTextTwentySix
 import pe.com.master.machines.design.theme.TextName
+import pe.com.master.machines.model.model.Movie
 
-/*
 @Composable
-fun HomeCharacterRow(
+fun HomeMovieRow(
     isExpanded: Boolean,
     item: Movie,
     onExpandClick: (Int) -> Unit,
@@ -58,7 +58,7 @@ fun HomeCharacterRow(
         ) {
 
             ImageWithUrl(
-                photoUrl = item.image,
+                photoUrl = item.posterPath,
                 modifier = Modifier
                     .padding(all = ContentInsetEight)
                     .size(ContentInsetOneHundredFifty)
@@ -72,7 +72,7 @@ fun HomeCharacterRow(
                     .weight(1f), verticalArrangement = Arrangement.Center
             ) {
                 CustomText(
-                    text = item.name,
+                    text = item.originalTitle,
                     textColor = TextName,
                     fontWeight = FontWeight.Bold,
                     fontSize = DynamicTextTwentySix,
@@ -81,13 +81,15 @@ fun HomeCharacterRow(
                 Spacer(modifier = Modifier.height(ContentInset))
 
                 CustomText(
-                    text = item.name, textColor = BlueGray500, maxLines = 10
+                    text = item.title,
+                    textColor = BlueGray500, maxLines = 10
                 )
 
                 Spacer(modifier = Modifier.height(ContentInset))
 
                 CustomText(
-                    text = item.status, textColor = TextName
+                    text = item.overview,
+                    textColor = TextName
                 )
             }
         }
@@ -104,7 +106,7 @@ fun HomeCharacterRow(
                     CustomText(text = "Ver Detalles")
                 }
                 Spacer(modifier = Modifier.width(8.dp))
-                Button(onClick = {
+                /*Button(onClick = {
                     val episodeIds = item.episode.map { url ->
                         url.substringAfterLast('/')
                     }
@@ -112,7 +114,7 @@ fun HomeCharacterRow(
                     onViewEpisodes(idsString)
                 }) {
                     CustomText(text = "${item.episode.size} Episodios")
-                }
+                }*/
             }
         }
     }
@@ -122,14 +124,14 @@ fun HomeCharacterRow(
 @Composable
 fun PreviewRowEvent() {
     Column {
-        HomeCharacterRow(
+        HomeMovieRow(
             isExpanded = false,
             item = Movie(),
             onExpandClick = {},
             onViewEpisodes = {},
             onDetailCharacter = {},
         )
-        HomeCharacterRow(
+        HomeMovieRow(
             isExpanded = true,
             item = Movie(),
             onExpandClick = {},
@@ -137,4 +139,4 @@ fun PreviewRowEvent() {
             onDetailCharacter = {},
         )
     }
-}*/
+}

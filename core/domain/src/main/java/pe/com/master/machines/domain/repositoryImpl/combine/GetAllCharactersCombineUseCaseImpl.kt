@@ -16,8 +16,8 @@ import pe.com.master.machines.model.response.ResponseAllMovies
 import javax.inject.Inject
 
 class GetAllCharactersCombineUseCaseImpl @Inject constructor(
-    private val MovieLocalDataRepository: MovieLocalDataRepository,
-    private val MovieRemoteDataRepository: MovieRemoteDataRepository,
+    private val movieLocalDataRepository: MovieLocalDataRepository,
+    private val movieRemoteDataRepository: MovieRemoteDataRepository,
     private val preferencesDataRepository: PreferencesDataRepository,
 ) : GetAllCharactersCombineUseCase {
 
@@ -25,7 +25,7 @@ class GetAllCharactersCombineUseCaseImpl @Inject constructor(
         isHaveInternet: Boolean, page: Int
     ): Flow<Resource<ResponseAllMovies>> {
         val offset = (page - 1) * PAGE_SIZE
-        val localFlow = MovieLocalDataRepository.getCharactersByPage(PAGE_SIZE, offset)
+        val localFlow = movieLocalDataRepository.getCharactersByPage(PAGE_SIZE, offset)
         return if (!isHaveInternet) {
             localFlow.map { local ->
                 val totalPages = preferencesDataRepository.totalPages.firstOrNull() ?: -1
@@ -47,12 +47,12 @@ class GetAllCharactersCombineUseCaseImpl @Inject constructor(
                 }
             }
         } else {
-            val remoteFlow = MovieRemoteDataRepository.getLoadAllCharacters(page)
+            val remoteFlow = movieRemoteDataRepository.getLoadAllCharacters(page)
             combine(localFlow, remoteFlow) { local, remote ->
                 val totalPages = preferencesDataRepository.totalPages.firstOrNull() ?: -1
                 when {
                     remote is Resource.Success -> {
-                        MovieLocalDataRepository.saveAllCharacters(remote.data.results)
+                        movieLocalDataRepository.saveAllCharacters(remote.data.results)
                             .collect {}
                         preferencesDataRepository.setTotalPages(remote.data.totalPages)
                         Resource.Success(remote.data)
