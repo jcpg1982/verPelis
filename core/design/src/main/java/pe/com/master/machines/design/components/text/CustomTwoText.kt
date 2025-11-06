@@ -12,6 +12,7 @@ import pe.com.master.machines.design.theme.BlueGray400
 import pe.com.master.machines.design.theme.BlueGray500
 import pe.com.master.machines.design.theme.BlueGray700
 import pe.com.master.machines.design.theme.BlueGray900
+import pe.com.master.machines.design.theme.ColorWhite
 import pe.com.master.machines.design.theme.DynamicTextSixteen
 
 @Composable
@@ -31,7 +32,7 @@ fun CustomTwoText(
             text = title,
             fontSize = fontSize,
             fontWeight = FontWeight.Bold,
-            textColor = BlueGray900,
+            textColor = ColorWhite,
             maxLines = 1,
             textAlign = textAlign,
         )
@@ -40,7 +41,7 @@ fun CustomTwoText(
             text = subTitle,
             fontSize = fontSizeSubTitle,
             fontWeight = FontWeight.Normal,
-            textColor = BlueGray700,
+            textColor = ColorWhite,
             maxLines = 3,
             textAlign = textAlign,
         )

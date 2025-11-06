@@ -10,6 +10,6 @@ interface MoviesDatabaseRepository {
     fun getSingleCharacter(id: Int): Flow<Resource<MovieEntity?>>
     fun getCharactersByPage(limit: Int, offset: Int): Flow<Resource<List<MovieEntity>>>
     fun searchCharacterByName(
-        limit: Int, offset: Int, name: String, status: String
+        limit: Int, offset: Int, query: String
     ): Flow<Resource<List<MovieEntity>>>
 }

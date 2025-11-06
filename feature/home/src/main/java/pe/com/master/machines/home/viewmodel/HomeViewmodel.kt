@@ -91,8 +91,7 @@ class HomeViewmodel @Inject constructor(
             getSingleCharacterByNameCombineUseCase.invoke(
                 isConnected,
                 pageCurrent,
-                searchCharacterState.value,
-                "alive"
+                searchCharacterState.value
             )
                 .flowOn(Dispatchers.IO)
                 .onStart {

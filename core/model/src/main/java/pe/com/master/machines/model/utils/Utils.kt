@@ -6,6 +6,15 @@ import com.google.gson.reflect.TypeToken
 
 object Utils {
 
+    fun fromIntList(value: List<Int>): String {
+        return Gson().toJson(value)
+    }
+
+    fun toIntList(value: String): List<Int> {
+        val listType = object : TypeToken<List<Int>>() {}.type
+        return Gson().fromJson(value, listType)
+    }
+
     fun fromStringList(value: List<String>): String {
         return Gson().toJson(value)
     }

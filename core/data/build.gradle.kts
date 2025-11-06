@@ -40,6 +40,7 @@ dependencies {
 
     implementation(projects.core.common)
     implementation(projects.core.database)
+    implementation(projects.core.firebase)
     implementation(projects.core.network)
     implementation(projects.core.preferences)
     implementation(projects.core.model)

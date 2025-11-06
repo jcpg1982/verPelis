@@ -28,7 +28,7 @@ object DataFake {
     val fakeGetSingleCharacterByNameCombineUseCase =
         object : GetSingleCharacterByNameCombineUseCase {
             override fun invoke(
-                isHaveInternet: Boolean, page: Int, name: String, status: String
+                isHaveInternet: Boolean, page: Int, query: String
             ): Flow<Resource<ResponseAllMovies>> {
                 return flowOf()
             }

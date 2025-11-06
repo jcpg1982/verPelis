@@ -39,7 +39,6 @@ fun HomeMovieRow(
     isExpanded: Boolean,
     item: Movie,
     onExpandClick: (Int) -> Unit,
-    onViewEpisodes: (String) -> Unit,
     onDetailCharacter: (Int) -> Unit
 ) {
 
@@ -54,11 +53,11 @@ fun HomeMovieRow(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .background(color = ColorWhite), verticalAlignment = Alignment.CenterVertically
+                .background(color = ColorWhite), verticalAlignment = Alignment.Top
         ) {
 
             ImageWithUrl(
-                photoUrl = item.posterPath,
+                photoUrl = "https://image.tmdb.org/t/p/w500${item.backdropPath}",
                 modifier = Modifier
                     .padding(all = ContentInsetEight)
                     .size(ContentInsetOneHundredFifty)
@@ -72,24 +71,27 @@ fun HomeMovieRow(
                     .weight(1f), verticalArrangement = Arrangement.Center
             ) {
                 CustomText(
-                    text = item.originalTitle,
+                    text = item.title,
                     textColor = TextName,
                     fontWeight = FontWeight.Bold,
                     fontSize = DynamicTextTwentySix,
+                    maxLines = 2
                 )
 
                 Spacer(modifier = Modifier.height(ContentInset))
 
                 CustomText(
-                    text = item.title,
-                    textColor = BlueGray500, maxLines = 10
+                    text = item.originalTitle,
+                    textColor = BlueGray500,
+                    maxLines = 2
                 )
 
                 Spacer(modifier = Modifier.height(ContentInset))
 
                 CustomText(
                     text = item.overview,
-                    textColor = TextName
+                    textColor = TextName,
+                    maxLines = 10
                 )
             }
         }
@@ -106,15 +108,6 @@ fun HomeMovieRow(
                     CustomText(text = "Ver Detalles")
                 }
                 Spacer(modifier = Modifier.width(8.dp))
-                /*Button(onClick = {
-                    val episodeIds = item.episode.map { url ->
-                        url.substringAfterLast('/')
-                    }
-                    val idsString = episodeIds.joinToString(",")
-                    onViewEpisodes(idsString)
-                }) {
-                    CustomText(text = "${item.episode.size} Episodios")
-                }*/
             }
         }
     }
@@ -128,14 +121,12 @@ fun PreviewRowEvent() {
             isExpanded = false,
             item = Movie(),
             onExpandClick = {},
-            onViewEpisodes = {},
             onDetailCharacter = {},
         )
         HomeMovieRow(
             isExpanded = true,
             item = Movie(),
             onExpandClick = {},
-            onViewEpisodes = {},
             onDetailCharacter = {},
         )
     }

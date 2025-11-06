@@ -44,7 +44,6 @@ import pe.com.master.machines.home.viewmodel.HomeViewmodel
 
 @Composable
 fun HomeScreen(
-    onNavigateToViewEpisodes: (String) -> Unit,
     onNavigateToDetailCharacter: (Int) -> Unit,
     homeViewmodel: HomeViewmodel = hiltViewModel()
 ) {
@@ -154,9 +153,6 @@ fun HomeScreen(
                         onDetailCharacter = {
                             onNavigateToDetailCharacter(it)
                         },
-                        onViewEpisodes = {
-                            onNavigateToViewEpisodes(it)
-                        }
                     )
                 }
             }
@@ -185,7 +181,6 @@ fun HomeScreen(
 @Composable
 fun PreviewHOmeScreen() {
     HomeScreen(
-        onNavigateToViewEpisodes = {},
         onNavigateToDetailCharacter = {},
         homeViewmodel = fakeViewModel
     )

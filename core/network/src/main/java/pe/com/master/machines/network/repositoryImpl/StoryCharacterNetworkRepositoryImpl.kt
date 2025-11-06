@@ -10,21 +10,19 @@ class MovieNetworkRepositoryImpl @Inject constructor(private val apiService: Api
     MovieNetworkRepository {
 
     override fun getLoadAllCharacters(page: Int) = flow {
-        val response = apiService.getLoadAllCharacters("es-ES", page)
+        val response = apiService.getLoadAllCharacters(page = page)
         emit(Resource.Success(response))
     }
 
     override fun getLoadSingleCharacter(id: Int) = flow {
-        val response = apiService.getLoadSingleCharacter(id)
+        val response = apiService.getLoadSingleMovie(id)
         emit(Resource.Success(response))
     }
 
     override fun searchCharacterByName(
-        page: Int,
-        name: String,
-        status: String
+        page: Int, query: String
     ) = flow {
-        val response = apiService.searchCharacterByName(page, name, status)
+        val response = apiService.searchMovieByName(page = page, query = query)
         emit(Resource.Success(response))
     }
 }

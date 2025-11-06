@@ -17,7 +17,7 @@ class GetSingleMovieCombineUseCaseImpl @Inject constructor(
     private val MovieRemoteDataRepository: MovieRemoteDataRepository,
 ) : GetSingleMovieCombineUseCase {
 
-    override fun invoke(isHaveInternet: Boolean, id: Int): Flow<Resource<Movie>> {
+    override fun invoke(isHaveInternet: Boolean, id: Int): Flow<Resource<Movie?>> {
         val localFlow = MovieLocalDataRepository.getSingleCharacter(id)
         return if (!isHaveInternet) {
             localFlow.map { local ->
@@ -31,8 +31,10 @@ class GetSingleMovieCombineUseCaseImpl @Inject constructor(
             combine(localFlow, remoteFlow) { local, remote ->
                 when {
                     remote is Resource.Success -> {
-                        MovieLocalDataRepository.saveAllCharacters(listOf(remote.data))
-                            .collect {}
+                        remote.data?.let {
+                            MovieLocalDataRepository.saveAllCharacters(listOf(it))
+                                .collect {}
+                        }
                         Resource.Success(remote.data)
                     }
 

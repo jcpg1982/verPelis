@@ -7,6 +7,6 @@ import pe.com.master.machines.model.response.ResponseAllMovies
 interface GetSingleCharacterByNameRemoteUseCase {
 
     operator fun invoke(
-        page: Int, name: String, status: String
+        page: Int, query: String
     ): Flow<Resource<ResponseAllMovies>>
 }

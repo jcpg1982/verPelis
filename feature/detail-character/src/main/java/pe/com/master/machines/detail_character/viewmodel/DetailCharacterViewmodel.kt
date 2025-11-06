@@ -15,11 +15,13 @@ import kotlinx.coroutines.launch
 import pe.com.master.machines.common.response.Resource
 import pe.com.master.machines.common.utils.messageError
 import pe.com.master.machines.domain.repository.combine.GetSingleMovieCombineUseCase
+import pe.com.master.machines.domain.repository.firebase.SendLogEventAnalyticsUsesCase
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailCharacterViewmodel @Inject constructor(
     private val getSingleMovieCombineUseCase: GetSingleMovieCombineUseCase,
+    private val sendLogEventAnalyticsUsesCase: SendLogEventAnalyticsUsesCase,
 ) : ViewModel() {
     private val TAG = DetailCharacterViewmodel::class.java.simpleName
 
@@ -50,7 +52,39 @@ class DetailCharacterViewmodel @Inject constructor(
 
                         is Resource.Success -> {
                             Log.i(TAG, "getMovies collect Success ${res.data}")
+                            sendLogEvent(
+                                "view_movie_detail",
+                                res.data?.id ?: -1,
+                                res.data?.title.orEmpty(),
+                                "view_movie_detail"
+                            )
                             _getMoviesState.update { DetailCharacterState.Success(res.data) }
+                        }
+                    }
+                }
+        }
+    }
+
+    private fun sendLogEvent(
+        event: String, movieId: Int, title: String, screen: String
+    ) {
+        viewModelScope.launch {
+            sendLogEventAnalyticsUsesCase.invoke(event, movieId, title, screen)
+                .flowOn(Dispatchers.IO)
+                .onStart {
+                    Log.i(TAG, "sendLogEvent onStart")
+                }
+                .catch { e ->
+                    Log.i(TAG, "sendLogEvent catch ${e.message}")
+                }
+                .collect { res ->
+                    when (res) {
+                        is Resource.Error -> {
+                            Log.i(TAG, "sendLogEvent collect error ${res.messageError}")
+                        }
+
+                        is Resource.Success -> {
+                            Log.i(TAG, "sendLogEvent collect Success ${res.data}")
                         }
                     }
                 }

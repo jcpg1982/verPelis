@@ -8,9 +8,9 @@ import pe.com.master.machines.network.model.response.ResponseAllMoviesNetwork
 interface MovieNetworkRepository {
     fun getLoadAllCharacters(page: Int): Flow<Resource<ResponseAllMoviesNetwork>>
 
-    fun getLoadSingleCharacter(id: Int): Flow<Resource<MovieNetwork>>
+    fun getLoadSingleCharacter(movieId: Int): Flow<Resource<MovieNetwork?>>
 
     fun searchCharacterByName(
-        page: Int, name: String, status: String
+        page: Int, query: String
     ): Flow<Resource<ResponseAllMoviesNetwork>>
 }

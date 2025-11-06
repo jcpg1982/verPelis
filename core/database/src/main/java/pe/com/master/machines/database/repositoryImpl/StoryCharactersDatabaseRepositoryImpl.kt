@@ -50,11 +50,11 @@ class MoviesDatabaseRepositoryImpl @Inject constructor(private val realmConfig: 
     }
 
     override fun searchCharacterByName(
-        limit: Int, offset: Int, name: String, status: String
+        limit: Int, offset: Int, query: String
     ) = flow {
         try {
             val characters = realm.query<MovieEntity>(
-                "name CONTAINS[c] $0 AND status == $1", name, status
+                "name CONTAINS[c] $0 AND status == $1", query,
             ).sort("id").find().drop(offset).take(limit)
             emit(Resource.Success(characters))
         } catch (e: Exception) {

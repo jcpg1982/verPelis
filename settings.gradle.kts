@@ -34,9 +34,8 @@ include(":core:common")
 include(":core:database")
 include(":core:network")
 include(":core:preferences")
+include(":core:firebase")
 include(":feature")
 include(":feature:home")
-include(":feature:detail-character")
-include(":feature:view-episodes")
 
- 
+include(":feature:detail-character")

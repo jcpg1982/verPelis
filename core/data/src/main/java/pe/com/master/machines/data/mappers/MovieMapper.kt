@@ -2,12 +2,14 @@ package pe.com.master.machines.data.mappers
 
 import pe.com.master.machines.database.entity.MovieEntity
 import pe.com.master.machines.model.model.Movie
+import pe.com.master.machines.model.utils.Utils.fromIntList
+import pe.com.master.machines.model.utils.Utils.fromStringList
 
 fun Movie.toEntity(): MovieEntity {
     val entity = MovieEntity()
     entity.adult = this.adult
     entity.backdropPath = this.backdropPath
-    entity.genreIds = this.genreIds
+    entity.genreIds = fromIntList(this.genreIds)
     entity.id = this.id
     entity.originalLanguage = this.originalLanguage
     entity.originalTitle = this.originalTitle

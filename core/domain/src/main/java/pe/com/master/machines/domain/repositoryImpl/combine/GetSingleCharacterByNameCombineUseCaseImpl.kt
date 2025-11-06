@@ -22,11 +22,11 @@ class GetSingleCharacterByNameCombineUseCaseImpl @Inject constructor(
 ) : GetSingleCharacterByNameCombineUseCase {
 
     override fun invoke(
-        isHaveInternet: Boolean, page: Int, name: String, status: String
+        isHaveInternet: Boolean, page: Int, query: String
     ): Flow<Resource<ResponseAllMovies>> {
         val offset = (page - 1) * PAGE_SIZE
         val localFlow =
-            MovieLocalDataRepository.searchCharacterByName(PAGE_SIZE, offset, name, status)
+            MovieLocalDataRepository.searchCharacterByName(PAGE_SIZE, offset, query)
         return if (!isHaveInternet) {
             localFlow.map { local ->
                 val totalPages = preferencesDataRepository.totalPages.firstOrNull() ?: -1
@@ -49,7 +49,7 @@ class GetSingleCharacterByNameCombineUseCaseImpl @Inject constructor(
             }
         } else {
             val remoteFlow =
-                MovieRemoteDataRepository.searchCharacterByName(page, name, status)
+                MovieRemoteDataRepository.searchCharacterByName(page, query)
             combine(localFlow, remoteFlow) { local, remote ->
                 val totalPages = preferencesDataRepository.totalPages.firstOrNull() ?: -1
                 when {

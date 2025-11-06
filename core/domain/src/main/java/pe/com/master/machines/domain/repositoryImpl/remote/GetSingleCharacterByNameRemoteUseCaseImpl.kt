@@ -9,6 +9,6 @@ class GetSingleCharacterByNameRemoteUseCaseImpl @Inject constructor(
 ) : GetSingleCharacterByNameRemoteUseCase {
 
     override fun invoke(
-        page: Int, name: String, status: String
-    ) = movieRemoteDataRepository.searchCharacterByName(page, name, status)
+        page: Int, query: String
+    ) = movieRemoteDataRepository.searchCharacterByName(page, query)
 }

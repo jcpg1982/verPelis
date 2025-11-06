@@ -11,6 +11,7 @@ import pe.com.master.machines.domain.repository.database.GetAllCharactersLocalUs
 import pe.com.master.machines.domain.repository.database.GetSingleCharacterByNameLocalUseCase
 import pe.com.master.machines.domain.repository.database.GetSingleCharacterLocalUseCase
 import pe.com.master.machines.domain.repository.database.SaveAllCharactersLocalUseCase
+import pe.com.master.machines.domain.repository.firebase.SendLogEventAnalyticsUsesCase
 import pe.com.master.machines.domain.repository.preferences.TotalPagesUsesCase
 import pe.com.master.machines.domain.repository.remote.GetAllCharactersRemoteUseCase
 import pe.com.master.machines.domain.repository.remote.GetSingleCharacterByNameRemoteUseCase
@@ -22,6 +23,7 @@ import pe.com.master.machines.domain.repositoryImpl.database.GetAllCharactersLoc
 import pe.com.master.machines.domain.repositoryImpl.database.GetSingleCharacterByNameLocalUseCaseImpl
 import pe.com.master.machines.domain.repositoryImpl.database.GetSingleCharacterLocalUseCaseImpl
 import pe.com.master.machines.domain.repositoryImpl.database.SaveAllCharactersLocalUseCaseImpl
+import pe.com.master.machines.domain.repositoryImpl.firebase.SendLogEventAnalyticsUsesCaseImpl
 import pe.com.master.machines.domain.repositoryImpl.preferences.TotalPagesUsesCaseImpl
 import pe.com.master.machines.domain.repositoryImpl.remote.GetAllCharactersRemoteUseCaseImpl
 import pe.com.master.machines.domain.repositoryImpl.remote.GetSingleCharacterByNameRemoteUseCaseImpl
@@ -75,4 +77,8 @@ abstract class DomainModule {
     @Binds
     @Singleton
     abstract fun providerGetSingleCharacterByNameCombineUseCase(impl: GetSingleCharacterByNameCombineUseCaseImpl): GetSingleCharacterByNameCombineUseCase
+
+    @Binds
+    @Singleton
+    abstract fun providerSendLogEventAnalyticsUsesCase(impl: SendLogEventAnalyticsUsesCaseImpl): SendLogEventAnalyticsUsesCase
 }

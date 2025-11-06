@@ -7,5 +7,5 @@ sealed interface DetailCharacterState {
     data object First : DetailCharacterState
     data object Loading : DetailCharacterState
     data class Error(val throwable: Throwable) : DetailCharacterState
-    data class Success(val data: Movie) : DetailCharacterState
+    data class Success(val data: Movie?) : DetailCharacterState
 }

@@ -9,7 +9,7 @@ class GetSingleCharacterByNameLocalUseCaseImpl @Inject constructor(
 ) : GetSingleCharacterByNameLocalUseCase {
 
     override fun invoke(
-        limit: Int, offset: Int, name: String, status: String
-    ) = movieLocalDataRepository.searchCharacterByName(limit, offset, name, status)
+        limit: Int, offset: Int, query: String
+    ) = movieLocalDataRepository.searchCharacterByName(limit, offset, query)
 
 }

@@ -7,6 +7,6 @@ import pe.com.master.machines.model.response.ResponseAllMovies
 interface GetSingleCharacterByNameCombineUseCase {
 
     operator fun invoke(
-        isHaveInternet: Boolean, page: Int, name: String, status: String
+        isHaveInternet: Boolean, page: Int, query: String
     ): Flow<Resource<ResponseAllMovies>>
 }

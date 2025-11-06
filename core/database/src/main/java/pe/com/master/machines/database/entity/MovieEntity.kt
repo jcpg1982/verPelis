@@ -7,17 +7,17 @@ import org.mongodb.kbson.ObjectId
 open class MovieEntity : RealmObject {
     @PrimaryKey
     var id: Int = 0
-    var name: String = ""
-    var status: String = ""
-    var species: String = ""
-    var type: String = ""
-    var gender: String = ""
-    var originName: String = ""
-    var originUrl: String = ""
-    var locationName: String = ""
-    var locationUrl: String = ""
-    var image: String = ""
-    var episode: String = ""
-    var url: String = ""
-    var created: String = ""
+    var adult: Boolean = false
+    var backdropPath: String = ""
+    var genreIds: String = ""
+    var originalLanguage: String = ""
+    var originalTitle: String = ""
+    var overview: String = ""
+    var popularity: Double = 0.0
+    var posterPath: String = ""
+    var releaseDate: String = ""
+    var title: String = ""
+    var video: Boolean = false
+    var voteAverage: Double = 0.0
+    var voteCount: Int = -1
 }

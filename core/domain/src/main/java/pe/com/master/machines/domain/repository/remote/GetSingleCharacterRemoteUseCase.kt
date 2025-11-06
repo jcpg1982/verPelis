@@ -6,5 +6,5 @@ import pe.com.master.machines.model.model.Movie
 
 interface GetSingleCharacterRemoteUseCase {
 
-    operator fun invoke(id: Int): Flow<Resource<Movie>>
+    operator fun invoke(id: Int): Flow<Resource<Movie?>>
 }

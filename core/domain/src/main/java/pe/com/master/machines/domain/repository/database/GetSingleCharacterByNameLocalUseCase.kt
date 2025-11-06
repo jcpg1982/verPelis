@@ -6,6 +6,6 @@ import pe.com.master.machines.model.model.Movie
 
 interface GetSingleCharacterByNameLocalUseCase {
     operator fun invoke(
-        limit: Int, offset: Int, name: String, status: String
+        limit: Int, offset: Int, query: String
     ): Flow<Resource<List<Movie>>>
 }

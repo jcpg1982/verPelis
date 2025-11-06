@@ -47,7 +47,6 @@ dependencies {
     implementation(projects.core.design)
     implementation(projects.feature.home)
     implementation(projects.feature.detailCharacter)
-    implementation(projects.feature.viewEpisodes)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
