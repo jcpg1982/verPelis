@@ -8,7 +8,9 @@ plugins {
 
 android {
     namespace = "pe.com.master.machines.verpelis"
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    compileSdk {
+        version = release(libs.versions.compileSdk.get().toInt())
+    }
 
     defaultConfig {
         applicationId = "pe.com.master.machines.verpelis"
@@ -39,9 +41,6 @@ android {
     buildFeatures {
         compose = true
         buildConfig = true
-    }
-    composeOptions {
-        //kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
 }
 

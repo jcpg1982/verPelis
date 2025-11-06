@@ -3,12 +3,13 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt.gradle)
     alias(libs.plugins.google.devtools.ksp)
-    alias(libs.plugins.kotlin.compose)
 }
 
 android {
     namespace = "pe.com.master.machines.preferences"
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    compileSdk {
+        version = release(libs.versions.compileSdk.get().toInt())
+    }
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
@@ -50,4 +51,3 @@ dependencies {
     //gson
     implementation(libs.google.gson)
 }
-

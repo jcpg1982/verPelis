@@ -1,15 +1,17 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.hilt.gradle)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.hilt.gradle)
     alias(libs.plugins.google.devtools.ksp)
     alias(libs.plugins.kotlin.serialization)
 }
 
 android {
     namespace = "pe.com.master.machines.data"
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    compileSdk {
+        version = release(libs.versions.compileSdk.get().toInt())
+    }
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
@@ -32,12 +34,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        //kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
 }
 
