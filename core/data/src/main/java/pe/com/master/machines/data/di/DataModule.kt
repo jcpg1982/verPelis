@@ -10,7 +10,7 @@ import pe.com.master.machines.data.repository.preferences.PreferencesDataReposit
 import pe.com.master.machines.data.repository.remote.MovieRemoteDataRepository
 import pe.com.master.machines.data.repositoryImpl.database.MovieLocalDataRepositoryImpl
 import pe.com.master.machines.data.repositoryImpl.firebase.FirebaseDataRepositoryImpl
-import pe.com.master.machines.data.repositoryImpl.local.preferences.PreferencesDataRepositoryImpl
+import pe.com.master.machines.data.repositoryImpl.preferences.PreferencesDataRepositoryImpl
 import pe.com.master.machines.data.repositoryImpl.remote.MovieRemoteDataRepositoryImpl
 
 @Module
